@@ -97,19 +97,19 @@ jobs:
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
-        mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_sch
-        mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_pcb
+        mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}.kicad_sch
+        mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}.kicad_pcb
 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Kicad_raw
-        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_*'
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}_Kicad_raw
+        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}.kicad_*'
 
     - name: Renaming Files
       run: |
         cd Fabrication_temp
-        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${file}; done #https://unix.stackexchange.com/a/389516
+        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}_${file}; done #https://unix.stackexchange.com/a/389516
         # mkdir PCB_Sheet
         # mv *Sheet.* PCB_Sheet/
         mkdir BoM
@@ -118,17 +118,17 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Output
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}_Output
         path: 'Fabrication_temp'
 
     - name: Run STEP
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
         cd Fabrication_temp_step
-        mv *.step ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.step
+        mv *.step ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}.step
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Output_STEP
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${COMMIT}_Output_STEP
         path: 'Fabrication_temp_step'
