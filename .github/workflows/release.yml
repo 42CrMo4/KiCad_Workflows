@@ -141,7 +141,7 @@ jobs:
         cp release_template/release_note.md release_note.md 
         cp release_template/release_checklist.md release_checklist.md
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - uses: stefanzweifel/git-auto-commit-action@v5
       with:
         repository: .
         branch: main
