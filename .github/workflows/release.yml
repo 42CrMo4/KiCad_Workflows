@@ -101,7 +101,7 @@ jobs:
 
     - name: Run PCB
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step 3dview
 
     - name: Run Gerber
       run: |
