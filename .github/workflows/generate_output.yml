@@ -87,7 +87,7 @@ jobs:
     - uses: INTI-CMNB/KiBot@v2_k6
       with:
         # Required - kibot config file
-        config: design.kibot.yaml
+        config: design.kiplot.yaml
         # optional - prefix to output defined in config
         #dir: Fabrication_temp
 
