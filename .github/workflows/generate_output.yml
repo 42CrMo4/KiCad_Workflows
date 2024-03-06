@@ -89,7 +89,7 @@ jobs:
         # Required - kibot config file
         config: design.kiplot.yaml
         # optional - prefix to output defined in config
-        #dir: Fabrication_temp
+        dir: Fabrication_temp
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
