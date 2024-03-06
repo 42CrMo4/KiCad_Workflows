@@ -53,11 +53,6 @@ jobs:
     # needs: ERC
 
     steps:
-    - name: Update system repositories, Install Required Libraries
-      run: |
-        apt update
-        apt -y install git
-    
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
