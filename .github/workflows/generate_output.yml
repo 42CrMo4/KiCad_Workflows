@@ -100,6 +100,7 @@ jobs:
     - name: Renaming Files
       run: |
         cd Fabrication_temp
+        ls -l
         for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
         # mkdir PCB_Sheet
         # mv *Sheet.* PCB_Sheet/
