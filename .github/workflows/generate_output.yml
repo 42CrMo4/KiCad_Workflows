@@ -105,11 +105,10 @@ jobs:
         cd Fabrication_temp
         ls -l
         for file in *; do sudo mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
-        # mkdir PCB_Sheet
-        # mv *Sheet.* PCB_Sheet/
-        # ls -l
-        # mkdir BoM
-        # mv *iBoM.* BoM/
+        mkdir PCB_Sheet
+        sudo mv *Sheet.* PCB_Sheet/
+        mkdir BoM
+        sudo mv *BoM.* BoM/
 
     - name: Retrieve results
       uses: actions/upload-artifact@v4
