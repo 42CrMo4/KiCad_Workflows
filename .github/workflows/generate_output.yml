@@ -8,6 +8,9 @@ name: CI output design
 on:
   workflow_call:
 
+permissions:
+  contents: write
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   ERC-DRC:
