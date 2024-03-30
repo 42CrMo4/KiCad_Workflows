@@ -102,14 +102,14 @@ jobs:
 
     - name: Renaming Files
       run: |
-        sudo chmod -R 755 /Fabrication_temp
+        sudo chmod -R 777 Fabrication_temp
         cd Fabrication_temp
         ls -l
-        for file in *; do sudo mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
-        sudo mkdir PCB_Sheet
-        sudo mv *Sheet.* PCB_Sheet/
+        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
+        mkdir PCB_Sheet
+        mv *Sheet.* PCB_Sheet/
         mkdir BoM
-        sudo mv *BoM.* BoM/
+        mv *BoM.* BoM/
 
     - name: Retrieve results
       uses: actions/upload-artifact@v4
