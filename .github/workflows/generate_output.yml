@@ -88,6 +88,15 @@ jobs:
         config: design.kiplot.yaml
         # optional - prefix to output defined in config
         dir: Fabrication_temp
+      run: |
+        cd Fabrication_temp
+        ls -l
+        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
+        # mkdir PCB_Sheet
+        # mv *Sheet.* PCB_Sheet/
+        ls -l
+        # mkdir BoM
+        # mv *iBoM.* BoM/
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
@@ -104,10 +113,10 @@ jobs:
       run: |
         cd Fabrication_temp
         ls -l
-        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
+        # for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
         # mkdir PCB_Sheet
         # mv *Sheet.* PCB_Sheet/
-        ls -l
+        # ls -l
         # mkdir BoM
         # mv *iBoM.* BoM/
 
