@@ -117,10 +117,10 @@ jobs:
         name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
         path: |
           Fabrication_temp/
-          !Fabrication_temp/*3D*
+          !Fabrication_temp/*_3D*
 
     - name: Retrieve results
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_STEP
-        path: 'Fabrication_temp/*3D*'
+        path: 'Fabrication_temp/*_3D*'
