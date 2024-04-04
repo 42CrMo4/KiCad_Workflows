@@ -86,9 +86,7 @@ jobs:
       run: |
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kiplot.yaml
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kiplot.yaml
-        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kiplot.yaml
-        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kiplot.yaml
-        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yaml
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yaml
 
     - uses: INTI-CMNB/KiBot@v2_dk8
       with:
