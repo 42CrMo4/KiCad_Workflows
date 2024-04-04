@@ -82,6 +82,14 @@ jobs:
         sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
         sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
 
+     - name: Update the KiPlot File with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kiplot.yml
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kiplot.yml
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kiplot.yml
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kiplot.yml
+        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yml
+
     - uses: INTI-CMNB/KiBot@v2_dk8
       with:
         # Required - kibot config file
