@@ -28,7 +28,7 @@ jobs:
         config: design.kiplot.yaml
         # optional - prefix to output defined in config
         dir: Fabrication_temp
-        targets: none
+        targets:
 
     #- name: Run ERC & DRC
     #  run: |
