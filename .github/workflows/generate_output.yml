@@ -15,17 +15,25 @@ permissions:
 jobs:
   ERC-DRC:
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad6_auto:1.6.4
+    #container: ghcr.io/inti-cmnb/kicad6_auto:1.6.4
 
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: '0'
 
-    - name: Run ERC & DRC
-      run: |
-        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
+    - uses: INTI-CMNB/KiBot@v2_dk8
+      with:
+        # Required - kibot config file
+        config: design.kiplot.yaml
+        # optional - prefix to output defined in config
+        dir: Fabrication_temp
+        target: NONE
+
+    #- name: Run ERC & DRC
+    #  run: |
+    #    [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
+    #    [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
     #- name: Retrieve results
     #  uses: actions/upload-artifact@v4
     #  with:
