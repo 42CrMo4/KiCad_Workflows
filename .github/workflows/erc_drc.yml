@@ -1,0 +1,30 @@
+name: CI output design
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events that happen on all branches
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  ERC-DRC:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: INTI-CMNB/KiBot@v2_dk8
+      with:
+        # Required - kibot config file
+        config: design.kiplot.yaml
+        # optional - prefix to output defined in config
+        dir: ERC-DRC_Output
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ERC-DRC_Output
+        path: 'ERC-DRC_Output'
