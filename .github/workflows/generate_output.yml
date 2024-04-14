@@ -102,6 +102,7 @@ jobs:
         config: design.kiplot.yaml
         # optional - prefix to output defined in config
         dir: Fabrication_temp
+        skip: all
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
