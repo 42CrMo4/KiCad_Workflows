@@ -28,7 +28,7 @@ jobs:
         config: design.kiplot.yaml
         # optional - prefix to output defined in config
         dir: Fabrication_temp
-        targets: NONE
+        targets: erc drc
 
     - name: Retrieve results
       uses: actions/upload-artifact@v4
