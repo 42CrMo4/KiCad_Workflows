@@ -26,8 +26,15 @@ jobs:
 
     - name: Run BOM 
       run: |
-        [ -f *.kicad_sch ] && kiplot -d Fabrication -s all bom_csv_upload pcb_top_b pcb_bottom_b
-        head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
+        [ -f *.kicad_sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b pcb_bottom_b
+        # head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_small
+        path: |
+          Fabrication/
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
