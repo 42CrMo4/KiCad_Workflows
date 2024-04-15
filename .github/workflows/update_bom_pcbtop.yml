@@ -10,7 +10,7 @@ jobs:
   BOM_PCBtop:
     name: Update Bom, PCB_top and upload
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad8_auto:1.6.5
+    container: ghcr.io/inti-cmnb/kicad8_auto:dev
     steps:
     - name: Update system repositories, Install Required Libraries
       run: |
