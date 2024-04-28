@@ -19,6 +19,29 @@ jobs:
     - name: Assign variables from project.properties to Env variable
       run: |
         cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
+        echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
+      # https://kvz.io/cat-a-file-without-the-comments.html
+    
+    - name: Update the Schematic with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+    
+    - name: Update the PCBs with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+
+    - name: Update the KiPlot File with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kiplot.yaml
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kiplot.yaml
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yaml
 
     - name: Run BOM 
       run: |
