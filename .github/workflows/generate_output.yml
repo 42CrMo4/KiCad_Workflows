@@ -292,6 +292,8 @@ jobs:
           cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<Tag>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
         else
+          echo "No suitable tag found"
+        fi
 
     - uses: INTI-CMNB/KiBot@v2_k6
       with:
