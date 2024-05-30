@@ -166,7 +166,7 @@ jobs:
     - name: List tags and set environment variables
       run: |
         # Fetch all tags and prune deleted references
-        git fetch --prune --unshallow
+        # git fetch --prune --unshallow
         
         # Sort tags, placing non-pre-release tags last
         sorted_tags=$(git tag | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//')
