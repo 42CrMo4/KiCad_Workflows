@@ -293,7 +293,7 @@ jobs:
           echo "No suitable tag found"
         fi
 
-    - uses: INTI-CMNB/KiBot@v2_k6
+    - uses: INTI-CMNB/KiBot@v2_k8
       with:
         # Required - kibot config file
         config: design.kiplot.yaml
