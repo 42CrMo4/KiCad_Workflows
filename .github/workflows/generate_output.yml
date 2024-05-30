@@ -187,12 +187,12 @@ jobs:
     - name: Update the Kibot File with the 
       run: |
         if [ -z "${{ env.last_tag }}" ]; then
-          cat Diff_append.yaml >> *.kiplot.yml
+          cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<Tag>>!${{ env.last_tag }}!" *.kiplot.yaml
         else
 
         if [ -z "${{ env.matching_rc_tag }}" ]; then
-          cat Diff_append.yaml >> *.kiplot.yml
+          cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<Tag>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
         else
 
