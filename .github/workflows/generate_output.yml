@@ -147,10 +147,10 @@ jobs:
       run: |
         if [ -n "${{ env.last_tag }}" ]; then
           cat Diff_append.yaml >> *.kiplot.yaml
-          sed -i "s!<<Tag>>!${{ env.last_tag }}!" *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ env.last_tag }}!" *.kiplot.yaml
         elif [ -n "${{ env.matching_rc_tag }}" ]; then
           cat Diff_append.yaml >> *.kiplot.yaml
-          sed -i "s!<<Tag>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
         else
           echo "No suitable tag found"
         fi
