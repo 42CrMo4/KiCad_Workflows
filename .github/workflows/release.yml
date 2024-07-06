@@ -223,7 +223,7 @@ jobs:
         path: |
           Fabrication_temp/
 
-    - uses: vimtor/action-zip@v1.1
+    - uses: vimtor/action-zip@v1
       with:
         files: Gerber/
         recursive: false
