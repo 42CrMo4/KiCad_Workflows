@@ -46,14 +46,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    container: ghcr.io/inti-cmnb/kicad8_auto:1.7.0
     needs: [DRC, determine-release-type]
     steps:
-      - name: Update system repositories, Install Required Libraries
-        run: |
-          apt update
-          apt -y install git
-      
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -92,21 +86,13 @@ jobs:
           sed -i "s!<<version>>!${{ github.ref_name }}!g" docs/release_note.md
           sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!g" docs/release_note.md
 
-      - name: Run Schematic and BOM 
-        run: |
-          [ -f *.kicad_sch ] && kiplot -d Fabrication_temp -s all  print_sch interactive_bom 
-          if [[ "${{ needs.determine-release-type.outputs.release-type }}" == "release" ]]; then
-            kiplot -d Fabrication_temp -s all bom_csv_release
-            head -n -12 Fabrication_temp/BoM-long.csv > Fabrication_temp/BoM.csv
-          fi
-
-      - name: Run PCB
-        run: |
-          [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step 3dview
-
-      - name: Run Gerber
-        run: |
-          [ -f *.kicad_pcb ] && kiplot  -d Gerber -s all gerbers gerber_drills
+      - uses: INTI-CMNB/KiBot@v2_k8
+      with:
+        # Required - kibot config file
+        config: config.kiplot.yaml
+        # optional - prefix to output defined in config
+        dir: Fabrication_temp
+        #skip: all
 
       - name: Renaming Files
         run: |
