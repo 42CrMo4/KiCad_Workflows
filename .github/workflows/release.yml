@@ -88,11 +88,11 @@ jobs:
 
       - uses: INTI-CMNB/KiBot@v2_k8
         with:
-        # Required - kibot config file
-        config: config.kiplot.yaml
-        # optional - prefix to output defined in config
-        dir: Fabrication_temp
-        #skip: all
+          # Required - kibot config file
+          config: config.kiplot.yaml
+          # optional - prefix to output defined in config
+          dir: Fabrication_temp
+          #skip: all
 
       - name: Renaming Files
         run: |
