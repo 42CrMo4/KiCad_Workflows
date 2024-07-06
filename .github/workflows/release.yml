@@ -87,7 +87,7 @@ jobs:
           sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!g" docs/release_note.md
 
       - uses: INTI-CMNB/KiBot@v2_k8
-      with:
+        with:
         # Required - kibot config file
         config: config.kiplot.yaml
         # optional - prefix to output defined in config
