@@ -104,7 +104,7 @@ jobs:
 
     - name: Run Gerber
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Gerber -s all gerbers gerber_drills
+        [ -f *.kicad_pcb ] && kiplot  -d Gerber -s all gerbers gerber_drills JLCPCB
 
     - name: Renaming Files
       run: |
