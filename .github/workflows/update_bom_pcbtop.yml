@@ -10,7 +10,7 @@ jobs:
   BOM_PCBtop:
     name: Update Bom, PCB_top and upload
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad9_auto:1.8.3
+    container: ghcr.io/inti-cmnb/kicad10_auto:1.9.0
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
