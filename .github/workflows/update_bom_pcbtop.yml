@@ -13,7 +13,7 @@ jobs:
     container: ghcr.io/inti-cmnb/kicad10_auto:1.9.0
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Assign variables from project.properties to Env variable
       run: |
@@ -24,7 +24,7 @@ jobs:
         [ -f *.kicad_sch ] && kiplot -d Fabrication -s all bom_csv_upload pcb_top_b pcb_bottom_b
         head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
 
-    - uses: stefanzweifel/git-auto-commit-action@v5
+    - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         repository: .
         create_branch: true

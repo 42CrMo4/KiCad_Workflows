@@ -14,7 +14,7 @@ jobs:
     container: ghcr.io/inti-cmnb/kicad10_auto:1.9.0
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Run ERC
       run: |
@@ -31,7 +31,7 @@ jobs:
     needs: ERC
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Run DRC
       run: |
@@ -52,7 +52,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Assign variables from project.properties to Env variable
       run: |
@@ -107,7 +107,7 @@ jobs:
         cd Fabrication_temp
         for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}_${file}; done #https://unix.stackexchange.com/a/389516
 
-    - uses: vimtor/action-zip@v1.2
+    - uses: vimtor/action-zip@v1.3
       with:
         files: Gerber/
         recursive: false
@@ -126,7 +126,7 @@ jobs:
     steps:
 
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Renaming Release note & checklist + copy the template
       run: |
@@ -136,7 +136,7 @@ jobs:
         cp release_template/release_note.md release_note.md 
         cp release_template/release_checklist.md release_checklist.md
 
-    - uses: stefanzweifel/git-auto-commit-action@v5
+    - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         repository: .
         branch: main
